@@ -15,8 +15,9 @@ function build(modeltype::Type{MyExperimentalDrugCocktailContext}, data::NamedTu
     context.levels = data.levels
     context.W = data.W
 
-    # TODO: set the safety and bounds fields here
-    throw(ErrorException("You need to set the safety and bounds fields here"));
+    # set the safety and bounds fields
+    context.safety = get(data, :safety, Dict{Int, Float64}())
+    context.bounds = get(data, :bounds, Dict{Int, Tuple{Float64,Float64}}())
 
     return context
 end
