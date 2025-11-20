@@ -25,8 +25,11 @@ mutable struct MyExperimentalDrugCocktailContext <: MyAbstractContextModel
     levels::Dict{Int, NamedTuple} # maps drug level to drug concentration in mg/kg
     W::Float64             # weight of the patient in kg
 
-    # TODO: you need to add a safety field, and a bounds field here
-    throw(ErrorException("You need to add a safety field, and a bounds field here"));
+    # safety and bounds (added by helper)
+    # safety: maps drug type -> maximum safe concentration (mg/kg)
+    safety::Dict{Int, Float64}
+    # bounds: maps drug type -> (min, max) concentration (mg/kg)
+    bounds::Dict{Int, Tuple{Float64,Float64}}
 
     # constructor -
     MyExperimentalDrugCocktailContext() = new(); # create new *empty* instance 
